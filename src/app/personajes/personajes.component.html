@@ -1,0 +1,27 @@
+<header class="header">
+  <h1 class="logo">🧪 Rick & Morty App</h1>
+</header>
+
+<div class="tarjeta-contenedor">
+  <div class="tarjeta" *ngFor="let personaje of personajes" (click)="abrirModal(personaje)">
+    <img [src]="personaje.image" [alt]="personaje.name" class="avatar" />
+    <div class="contenido">
+      <h2>{{ personaje.name }}</h2>
+      <p><span class="etiqueta">Última vez visto en:</span><br>{{ personaje.location.name }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-fondo" *ngIf="mostrarModal" (click)="cerrarModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <span class="cerrar" (click)="cerrarModal()">✖</span>
+    <img [src]="personajeSeleccionado.image" class="modal-img" />
+    <h2>{{ personajeSeleccionado.name }}</h2>
+    <p><strong>Status:</strong> {{ personajeSeleccionado.status }}</p>
+    <p><strong>Especie:</strong> {{ personajeSeleccionado.species }}</p>
+    <p><strong>Género:</strong> {{ personajeSeleccionado.gender }}</p>
+    <p><strong>Origen:</strong> {{ personajeSeleccionado.origin.name }}</p>
+    <p><strong>Ubicación actual:</strong> {{ personajeSeleccionado.location.name }}</p>
+  </div>
+</div>
